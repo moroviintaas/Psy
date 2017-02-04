@@ -46,6 +46,22 @@ public class Mechanizm_kolejki {
 		 }
 		 else return null;
 	}
+	Samochod pobierz_z_flaga(int flaga)
+	{
+		Samochod s=null;
+		int i=0;
+		for( ; i<kolejka.size(); i++)
+		{
+			if(kolejka.get(i).flaga == flaga)
+			{
+				s = kolejka.get(i);
+				kolejka.remove(i);
+				i = kolejka.size();
+				pelna = false;
+			}
+		}
+		return s;
+	}
 	Boolean usun(Samochod s)
 	{
 		
