@@ -1,12 +1,13 @@
 import dissimlab.simcore.BasicSimEvent;
 import dissimlab.simcore.SimControlException;
 
-public class Start_obslugi extends BasicSimEvent<SMO_kolejka, Samochod>
+public class Start_obslugi extends BasicSimEvent<Stanowisko_obslugi, Samochod>
 {
+	Stanowisko_obslugi parent_SO;
 
-	public Start_obslugi() throws SimControlException {
-		super();
-		// TODO Auto-generated constructor stub
+	public Start_obslugi(Stanowisko_obslugi parent, double delay) throws SimControlException {
+		super(parent, delay);
+		this.parent_SO = parent;
 	}
 
 	@Override
@@ -29,7 +30,61 @@ public class Start_obslugi extends BasicSimEvent<SMO_kolejka, Samochod>
 
 	@Override
 	protected void stateChange() throws SimControlException {
-		// TODO Auto-generated method stub
+		Samochod samochod = null;
+		if(parent_SO.wymagana_zgodnosc_flag)
+		{
+			samochod=parent_SO.kolejka_do_gniazda.pobierz_z_kolejki_flaga(parent_SO.flaga);
+			parent_SO.obslugiwany = samochod;
+			if(samochod!=null)
+			{
+				//Ktos czekal do tego dystrybutora miejsce sie zwolnilo
+				if(parent_SO.kolejka_do_gniazda.jedno_wolne_miejsce())
+				{
+					parent_SO.kolejka_do_gniazda.blokada_wejscia.open();
+					
+					
+				}
+				samochod.zdarzenie_niecierpliwienia.interrupt();
+				System.out.println(simTime()+ " Start Obslugi: Stacja_obslugi: " +parent_SO.nazwa +  ", zaczyna obsluge samochodu nr: "+samochod.numer +  ".");
+				
+				
+				
+				
+			}
+			else
+			{
+			}
+		}
+		else
+		{
+			samochod = parent_SO.kolejka_do_gniazda.pobierz_z_kolejki();
+			parent_SO.obslugiwany = samochod;
+			if(parent_SO.kolejka_do_gniazda.jedno_wolne_miejsce())
+			{
+				try
+				{
+					parent_SO.kolejka_do_gniazda.blokada_wejscia.open();
+				}
+				catch (Exception e)
+				{
+					
+				}
+			}
+
+				
+				
+			if(samochod !=null)
+			{
+				samochod.zdarzenie_niecierpliwienia.interrupt();
+				System.out.println(simTime()+ " Start Obslugi: Stacja_obslugi: " +parent_SO.nazwa +  ", zaczyna obsluge samochodu nr: "+samochod.numer +  ".");
+			}
+			
+		}
+		if(samochod!=null)
+		{
+			double czas_obslugi = parent_SO.kolejka_do_gniazda.generator.normal(9.0, 1.0);
+			parent_SO.koniec_obslugi = new Koniec_obslugi(parent_SO, czas_obslugi);
+		}
 		
 	}
 
