@@ -8,6 +8,7 @@ public class Stanowisko_obslugi extends BasicSimObj
 	 * Tablica nastepnych kolejek, jeśli kolejka bedzie pewna nastapi proba wpakowania do nastepnej
 	 */
 	SMO_kolejka [] nastepne_kolejki;
+	double [] dystrybuanta_skokowa_nastepnych_kolejek;
 	SMO_kolejka kolejka_do_gniazda;
 	Boolean wymagana_zgodnosc_flag;
 	int flaga;
@@ -17,12 +18,14 @@ public class Stanowisko_obslugi extends BasicSimObj
 	Koniec_obslugi koniec_obslugi;
 	
 	
-	public Stanowisko_obslugi(String nazwa,SMO_kolejka[] nastepne_kolejki, Boolean wymagana_zgodnosc_flag ,int flaga)
+	public Stanowisko_obslugi(String nazwa,SMO_kolejka[] nastepne_kolejki, double [] dystrybuanta_skokowa_nastepnych_kolejek, Boolean wymagana_zgodnosc_flag ,int flaga)
 	{
 		this.nazwa = nazwa;
 		this.nastepne_kolejki = nastepne_kolejki;
 		this.wymagana_zgodnosc_flag = wymagana_zgodnosc_flag;
 		this.flaga = flaga;
+		this.dystrybuanta_skokowa_nastepnych_kolejek = dystrybuanta_skokowa_nastepnych_kolejek;
+		
 	}
 	void set_kolejka(SMO_kolejka kolejka)
 	{

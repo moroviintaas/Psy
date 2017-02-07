@@ -67,7 +67,7 @@ public class Start_obslugi extends BasicSimEvent<Stanowisko_obslugi, Samochod>
 				}
 				catch (Exception e)
 				{
-					
+					System.out.println(e);
 				}
 			}
 
