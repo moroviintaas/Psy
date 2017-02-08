@@ -28,6 +28,7 @@ public class SMO_kolejka extends BasicSimObj{
 		}
 		generator = new SimGenerator();
 		this.wlacz_niecierpliwienie = wlacz_niecierpliwienie;
+		blokada_wejscia = new SimEventSemaphore();
 		
 		
 	}

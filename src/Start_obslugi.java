@@ -67,7 +67,7 @@ public class Start_obslugi extends BasicSimEvent<Stanowisko_obslugi, Samochod>
 				}
 				catch (Exception e)
 				{
-					
+					System.out.println(e);
 				}
 			}
 
@@ -82,7 +82,7 @@ public class Start_obslugi extends BasicSimEvent<Stanowisko_obslugi, Samochod>
 		}
 		if(samochod!=null)
 		{
-			double czas_obslugi = parent_SO.kolejka_do_gniazda.generator.normal(9.0, 1.0);
+			double czas_obslugi = parent_SO.kolejka_do_gniazda.generator.normal(parent_SO.wartosc_oczekwiana_czasu_obslugi, parent_SO.odchylenie_czasu_obslugi);
 			parent_SO.koniec_obslugi = new Koniec_obslugi(parent_SO, czas_obslugi);
 		}
 		
