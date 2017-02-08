@@ -14,7 +14,7 @@ public class Psy {
 		{
 			Otoczenie stacja = new Otoczenie();
 			
-			Stanowisko_obslugi kasa = new Stanowisko_obslugi("Kasa", null, null,false, 0);
+			Stanowisko_obslugi kasa = new Stanowisko_obslugi("Kasa", null, null,false, 0, 3.0 , 0.5);
 			Stanowisko_obslugi [] array_kasy = new Stanowisko_obslugi[1];
 			array_kasy[0] = kasa;
 			
@@ -24,7 +24,7 @@ public class Psy {
 			double [] array_prawd_skumulowane_kasy = new double[1];
 			array_prawd_skumulowane_kasy[0] = 1.0;//poczatek przedzialu, w ktorym uznajemy ze trafil do tej kolejki
 			
-			Stanowisko_obslugi myjnia = new Stanowisko_obslugi("Myjnia", array_kolejki_do_kasy,array_prawd_skumulowane_kasy, false, 0);
+			Stanowisko_obslugi myjnia = new Stanowisko_obslugi("Myjnia", array_kolejki_do_kasy,array_prawd_skumulowane_kasy, false, 0, 5.0, 1.0);
 			Stanowisko_obslugi [] array_myjnie = new Stanowisko_obslugi[1];
 			array_myjnie[0] = myjnia;
 			
@@ -38,9 +38,9 @@ public class Psy {
 			array_prawd_skumulowane_po_tankowaniu[1] = 1.0;//poczatek przedzialu, w ktorym uznajemy ze trafil do tej kolejki
 			
 			
-			Stanowisko_obslugi dystrybutor_lpg = new Stanowisko_obslugi("LPG", array_kolejki_po_tankowaniu,array_prawd_skumulowane_po_tankowaniu, true, 0x01);
-			Stanowisko_obslugi dystrybutor_on = new Stanowisko_obslugi("ON", array_kolejki_po_tankowaniu, array_prawd_skumulowane_po_tankowaniu,true, 0x02);
-			Stanowisko_obslugi dystrybutor_pb = new Stanowisko_obslugi("PB", array_kolejki_po_tankowaniu, array_prawd_skumulowane_po_tankowaniu,true, 0x03);
+			Stanowisko_obslugi dystrybutor_lpg = new Stanowisko_obslugi("LPG", array_kolejki_po_tankowaniu,array_prawd_skumulowane_po_tankowaniu, true, 0x01, 8.0, 0.7);
+			Stanowisko_obslugi dystrybutor_on = new Stanowisko_obslugi("ON", array_kolejki_po_tankowaniu, array_prawd_skumulowane_po_tankowaniu,true, 0x02, 9.0, 1.0);
+			Stanowisko_obslugi dystrybutor_pb = new Stanowisko_obslugi("PB", array_kolejki_po_tankowaniu, array_prawd_skumulowane_po_tankowaniu,true, 0x03, 10.0, 1.0);
 			Stanowisko_obslugi [] array_dystrybutory = new Stanowisko_obslugi[3];
 			array_dystrybutory[0] = dystrybutor_lpg;
 			array_dystrybutory[1] = dystrybutor_on;
